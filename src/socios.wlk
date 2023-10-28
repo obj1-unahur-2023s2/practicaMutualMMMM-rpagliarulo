@@ -8,7 +8,7 @@ class Socio {
 	method actividadesEsforzadas()= actividades.filter({actividad => actividad.implicaEsfuerzo()})
 	method cantidadDeActividadesRealizadas()= actividades.size()
 	method realizarActividad(actividad)= if (self.cantidadDeActividadesRealizadas() < maxDeActividades) actividades.add(actividad) else self.error("Se ha alcanzado el maximo de actividades a realizar")
-	//method leAtrae(actividad)
+	method leAtrae(actividad)
 }
 
 class Tranquilo inherits Socio {
@@ -23,6 +23,6 @@ class Coherente inherits Socio {
 
 class Relajado inherits Socio {
 	
-	//override method leAtrae(actividad)= 
+	override method leAtrae(actividad)= idiomasQueHabla.intersection(actividad.idiomas())
 
 }

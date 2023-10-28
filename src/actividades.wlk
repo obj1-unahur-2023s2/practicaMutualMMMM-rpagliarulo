@@ -5,7 +5,7 @@ class Actividad {
 	method implicaEsfuerzo()
 	method sirveParaBroncearse()= true
 	method esInteresante()= idiomas.size() > 2
-	
+	method esRecomendadaPara(socio)= self.esInteresante() && socio.leAtrae(self) && !socio.actividades().contains(self)
 }
 
 class ViajeDePlaya inherits Actividad {
@@ -47,5 +47,18 @@ class ClaseDeGimnasia inherits Actividad {
 	override method diasQueLleva()= 1
 	override method implicaEsfuerzo()= true
 	override method sirveParaBroncearse()= false
+	override method esRecomendadaPara(socio)= socio.edad().between(20,50)
 	
+}
+
+
+class TallerLiterario inherits Actividad {
+	const librosConLosQueTrabaja= new List()
+	
+	method idiomasUsados()= librosConLosQueTrabaja.map({libro => libro.idioma()})
+	override method diasQueLleva()= librosConLosQueTrabaja.size() + 1
+	override method implicaEsfuerzo()= librosConLosQueTrabaja.any({libro => libro.cantPaginas() > 500 })
+	//incluye al menos un libro de más de 500 páginas, o bien todos los libros son del mismo autor, y hay más de uno.
+	override method sirveParaBroncearse()= false
+	override method esRecomendadaPara(socio)= socio.idiomasQueHabla().size() > 1
 }

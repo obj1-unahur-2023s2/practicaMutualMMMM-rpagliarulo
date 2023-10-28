@@ -5,7 +5,7 @@ describe "Roque" {
 	
 	const viaje1= new ViajeDePlaya(largo=1000)
 	const viaje2= new ViajeDePlaya(largo=2000)
-	const roque= new Socio (edad=50, actividades= [viaje1, viaje2],  maxDeActividades= 2, idiomasQueHabla= #{})
+	const roque= new Tranquilo (edad=50, actividades= [viaje1, viaje2],  maxDeActividades= 2, idiomasQueHabla= #{})
 
 	test "Roque es adorador del sol" {
 
@@ -31,7 +31,7 @@ describe "Ana" {
 	const gim1= new ClaseDeGimnasia()
 	const viaje1= new ViajeDePlaya(largo=1000)
 	const viaje2= new ViajeDePlaya(largo=2000)
-	const ana= new Socio (edad=50, actividades= [viaje1, viaje2],  maxDeActividades= 3, idiomasQueHabla= #{})
+	const ana= new Tranquilo (edad=50, actividades= [viaje1, viaje2],  maxDeActividades= 3, idiomasQueHabla= #{})
 
 	test "Ana es una socia que hizo dos viajes iguales a los que hizo roque, entonces: es adoradora del sol, 
 			y su lista de actividades que implican esfuerzo es la misma que la de él" {
