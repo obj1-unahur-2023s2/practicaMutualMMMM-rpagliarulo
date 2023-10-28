@@ -21,7 +21,7 @@ describe "Roque" {
 	
 	test "si registramos que Roque realiza una clase de gimnasia, se debe generar un error." {
 
-		assert.that(true)
+		assert.throwsException({roque.realizarActividad(new ClaseDeGimnasia())})
 
 	}
 }
