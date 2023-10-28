@@ -1,0 +1,82 @@
+import actividades.*
+
+describe "Excursiones" {
+	
+	const excursion1= new ExcursionACiudad(cantidadDeAtracciones= 4, idiomas=#{"espaniol", "ingles"})
+	const excursion2= new ExcursionACiudadTropical (cantidadDeAtracciones= 4, idiomas=#{"espaniol", "ingles"})
+	const excursion3= new ExcursionACiudad(cantidadDeAtracciones= 8, idiomas=#{"espaniol", "ingles"})
+	const excursion4= new ExcursionACiudadTropical (cantidadDeAtracciones= 8, idiomas=#{"espaniol", "ingles"})
+	const excursion5= new ExcursionACiudadTropical (cantidadDeAtracciones= 10, idiomas=#{"espaniol", "ingles"})
+
+	test "una excursión a ciudad normal (no tropical) en la que se visitan 4 atracciones, lleva 2 días, no implica esfuerzo, y no sirve para broncearse." {
+
+		assert.equals(2, excursion1.diasQueLleva())
+		assert.notThat(excursion1.implicaEsfuerzo())
+		assert.notThat(excursion1.sirveParaBroncearse())
+
+	}
+	
+	test "una excursión a ciudad tropical en la que se visitan 4 atracciones, lleva 3 días, no implica esfuerzo, y sí sirve para broncearse." {
+
+		assert.equals(3, excursion2.diasQueLleva())
+		assert.notThat(excursion2.implicaEsfuerzo())
+		assert.that(excursion2.sirveParaBroncearse())
+
+	}
+	
+	test "una excursión a ciudad normal (no tropical) en la que se visitan 8 atracciones, lleva 4 días, implica esfuerzo, y no sirve para broncearse." {
+
+		assert.equals(4, excursion3.diasQueLleva())
+		assert.that(excursion3.implicaEsfuerzo())
+		assert.notThat(excursion3.sirveParaBroncearse())
+
+
+	}
+	
+	test "una excursión a ciudad tropical en la que se visitan 8 atracciones, lleva 5 días, implica esfuerzo, y sirve para broncearse." {
+
+		assert.equals(5, excursion4.diasQueLleva())
+		assert.that(excursion4.implicaEsfuerzo())
+		assert.that(excursion4.sirveParaBroncearse())
+
+	}
+	
+	test "una excursión a ciudad tropical en la que se visitan 10 atracciones, lleva 6 días, no implica esfuerzo, y sí sirve para broncearse." {
+
+		assert.equals(6, excursion5.diasQueLleva())
+		assert.notThat(excursion5.implicaEsfuerzo())
+		assert.that(excursion5.sirveParaBroncearse())
+
+	}
+}
+
+describe "Salida de Trekking" {
+	
+	const trekking1= new SalidaDeTrekking(diasDeSolPorAnio= 130, kmDeSenderos=100, idiomas=#{"frances", "quechua"})
+	const trekking2= new SalidaDeTrekking(diasDeSolPorAnio= 240, kmDeSenderos=50)
+	const trekking3= new SalidaDeTrekking(diasDeSolPorAnio= 130, kmDeSenderos=250)
+
+	test "una salida de 100 kilómetros a un lugar con 130 días de sol por año: lleva 2 días, implica esfuerzo, y no sirve para broncearse." {
+
+		assert.equals(2, trekking1.diasQueLleva())
+		assert.that(trekking1.implicaEsfuerzo())
+		assert.notThat(trekking1.sirveParaBroncearse())
+
+	}
+	
+	test "una salida de 50 kilómetros a un lugar con 240 días de sol por año: lleva 1 día, no implica esfuerzo, y sí sirve para broncearse." {
+
+		assert.equals(1, trekking2.diasQueLleva())
+		assert.notThat(trekking2.implicaEsfuerzo())
+		assert.that(trekking2.sirveParaBroncearse())
+
+	}
+	
+	test "una salida de 250 kilómetros a un lugar con 130 días de sol por año: lleva 5 días, implica esfuerzo, y sirve para broncearse." {
+
+		assert.equals(5, trekking3.diasQueLleva())
+		assert.that(trekking3.implicaEsfuerzo())
+		assert.that(trekking3.sirveParaBroncearse())
+
+	}
+}

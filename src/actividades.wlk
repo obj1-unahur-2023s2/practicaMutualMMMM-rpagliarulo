@@ -25,7 +25,7 @@ class ExcursionACiudad inherits Actividad {
 	
 }
 
-class ExcursionACiudadTropical inherits Actividad {
+class ExcursionACiudadTropical inherits ExcursionACiudad {
 	
 	override method diasQueLleva()= super() + 1
 	override method sirveParaBroncearse()= true

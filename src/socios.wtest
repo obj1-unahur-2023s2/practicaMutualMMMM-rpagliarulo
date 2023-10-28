@@ -1,0 +1,62 @@
+import actividades.*
+import socios.*
+
+describe "Roque" {
+	
+	const viaje1= new ViajeDePlaya(largo=1000)
+	const viaje2= new ViajeDePlaya(largo=2000)
+	const roque= new Socio (edad=50, actividades= [viaje1, viaje2],  maxDeActividades= 2, idiomasQueHabla= #{})
+
+	test "Roque es adorador del sol" {
+
+		assert.that(roque.esAdoradorDelSol())
+
+	}
+	
+	test "Actividades que implican esfuerzo" {
+
+		assert.equals([viaje2], roque.actividadesEsforzadas())
+
+	}
+	
+	test "si registramos que Roque realiza una clase de gimnasia, se debe generar un error." {
+
+		assert.that(true)
+
+	}
+}
+
+describe "Ana" {
+	
+	const gim1= new ClaseDeGimnasia()
+	const viaje1= new ViajeDePlaya(largo=1000)
+	const viaje2= new ViajeDePlaya(largo=2000)
+	const ana= new Socio (edad=50, actividades= [viaje1, viaje2],  maxDeActividades= 3, idiomasQueHabla= #{})
+
+	test "Ana es una socia que hizo dos viajes iguales a los que hizo roque, entonces: es adoradora del sol, 
+			y su lista de actividades que implican esfuerzo es la misma que la de él" {
+
+		assert.that(ana.esAdoradorDelSol())
+		assert.equals([viaje2], ana.actividadesEsforzadas())
+
+	}
+	
+	
+	test "A Ana sí se le puede registar una clase de gimnasia" {
+		
+		ana.realizarActividad(gim1)
+		assert.equals(3, ana.cantidadDeActividadesRealizadas())
+
+	}
+	
+	test "Despues de registrar la clase de gimnasia, obtenemos que Ana no es adoradora del sol y su coleccion de actividades esforzadas incluye al viaje
+			de 2000 metros de playa y a la clase" {
+		
+		ana.realizarActividad(gim1)
+		assert.notThat(ana.esAdoradorDelSol())
+		assert.equals([viaje2, gim1], ana.actividadesEsforzadas())
+
+	}
+	
+	
+}
