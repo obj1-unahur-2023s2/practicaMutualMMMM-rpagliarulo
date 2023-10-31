@@ -1,8 +1,8 @@
 class Socio {
-	const edad
-	const actividades= []
+	const property edad
+	const property actividades= []
 	const maxDeActividades
-	const idiomasQueHabla= #{}
+	const property idiomasQueHabla= #{}
 	
 	method esAdoradorDelSol()= actividades.all({actividad => actividad.sirveParaBroncearse()})
 	method actividadesEsforzadas()= actividades.filter({actividad => actividad.implicaEsfuerzo()})
@@ -23,6 +23,6 @@ class Coherente inherits Socio {
 
 class Relajado inherits Socio {
 	
-	override method leAtrae(actividad)= idiomasQueHabla.intersection(actividad.idiomas())
+	override method leAtrae(actividad)= not idiomasQueHabla.intersection(actividad.idiomas()).isEmpty()
 
 }

@@ -57,8 +57,11 @@ class TallerLiterario inherits Actividad {
 	
 	method idiomasUsados()= librosConLosQueTrabaja.map({libro => libro.idioma()})
 	override method diasQueLleva()= librosConLosQueTrabaja.size() + 1
-	override method implicaEsfuerzo()= librosConLosQueTrabaja.any({libro => libro.cantPaginas() > 500 })
-	//incluye al menos un libro de más de 500 páginas, o bien todos los libros son del mismo autor, y hay más de uno.
+	override method implicaEsfuerzo()= librosConLosQueTrabaja.any({libro => libro.cantPaginas() > 500 }) or (self.todosLosLibrosSonDelMismoAutor() && self.cantidadDeLibros() > 1) 
+	method autoresDeLibros()= librosConLosQueTrabaja.map({libro => libro.nombreDelAutor()}).asSet()
+	method todosLosLibrosSonDelMismoAutor()= self.autoresDeLibros().size() == 1
 	override method sirveParaBroncearse()= false
 	override method esRecomendadaPara(socio)= socio.idiomasQueHabla().size() > 1
+	method cantidadDeLibros()= librosConLosQueTrabaja.size()
+	
 }
